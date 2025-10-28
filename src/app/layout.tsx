@@ -17,9 +17,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <div>
-            <Navbar/>
-            {children}</div>
+          <div className="max-w-5xl mx-auto flex flex-col ">
+            <Navbar />
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>
