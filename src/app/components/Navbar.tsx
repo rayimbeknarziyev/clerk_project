@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -6,7 +7,12 @@ export default function Navbar() {
       <Link href={"/"}>Home</Link>
       <Link href={"/dashboard"}>Dashboard</Link>
       <Link href={"/about"}>About</Link>
-      <Link href={"/sign-in"}>Sign In</Link>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+      <SignedOut>
+        <Link href={"/sign-in"}>Sign In</Link>
+      </SignedOut>
     </nav>
   );
 }
