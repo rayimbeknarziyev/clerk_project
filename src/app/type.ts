@@ -1,10 +1,10 @@
-// src/type.ts
-export type Medication = {
+export interface Medication {
   id: string;
   name: string;
   dosage: string;
   timesPerDay: number;
+  times: string[];
   stock: number;
   notes?: string;
-  times?: string[];
-};
+  takenToday?: number; 
+}

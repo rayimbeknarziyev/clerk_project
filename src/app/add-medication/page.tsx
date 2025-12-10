@@ -13,6 +13,7 @@ export default function AddMedicationPage() {
   const [notes, setNotes] = useState("");
 
   const addTime = () => setTimes([...times, ""]);
+
   const updateTime = (index: number, value: string) => {
     const copy = [...times];
     copy[index] = value;
@@ -21,14 +22,16 @@ export default function AddMedicationPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const newMed: Medication = {
       id: Date.now().toString(),
       name,
       dosage,
       timesPerDay,
+      times,
       stock,
       notes,
-      times,
+      takenToday: 0,
     };
 
     try {
@@ -37,8 +40,11 @@ export default function AddMedicationPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newMed),
       });
-      if (!res.ok) throw new Error("Failed to add medication");
-      alert("Medication added!");
+
+      if (!res.ok) throw new Error("Dorini qo‘shishda xatolik yuz berdi");
+
+      alert("Dori muvaffaqiyatli qo‘shildi!");
+
       setName("");
       setDosage("");
       setTimesPerDay(1);
@@ -47,51 +53,55 @@ export default function AddMedicationPage() {
       setNotes("");
     } catch (err) {
       console.error(err);
-      alert("Error adding medication");
+      alert("Dorini qo‘shishda xatolik yuz berdi");
     }
   };
 
   return (
     <div>
       <main className="max-w-3xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-6">Add New Medication</h1>
+        <h1 className="text-3xl font-bold mb-6">Yangi Dori Qo‘shish</h1>
+
         <form
           onSubmit={handleSubmit}
           className="space-y-5 bg-white p-6 shadow-md rounded-xl border"
         >
           <div>
-            <label className="block font-medium mb-1">Medication Name</label>
+            <label className="block font-medium mb-1">Dori nomi</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full border p-4 rounded-lg"
+              required
             />
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Dosage</label>
+            <label className="block font-medium mb-1">Doza</label>
             <input
               type="text"
               value={dosage}
               onChange={(e) => setDosage(e.target.value)}
               className="w-full border p-4 rounded-lg"
+              required
             />
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Times Per Day</label>
+            <label className="block font-medium mb-1">Kuniga necha marta</label>
             <input
               type="number"
               min={1}
               value={timesPerDay}
               onChange={(e) => setTimesPerDay(Number(e.target.value))}
               className="w-full border p-4 rounded-lg"
+              required
             />
           </div>
 
           <div>
-            <label className="block font-medium mb-2">Reminder Times</label>
+            <label className="block font-medium mb-2">Eslatma vaqtlari</label>
             {times.map((time, i) => (
               <input
                 key={i}
@@ -106,23 +116,26 @@ export default function AddMedicationPage() {
               onClick={addTime}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
-              + Add Time
+              + Vaqt qo‘shish
             </button>
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Stock (tablets)</label>
+            <label className="block font-medium mb-1">
+              Qoldiq miqdor (tabletka)
+            </label>
             <input
               type="number"
               min={1}
               value={stock}
               onChange={(e) => setStock(Number(e.target.value))}
               className="w-full border p-4 rounded-lg"
+              required
             />
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Notes (optional)</label>
+            <label className="block font-medium mb-1">Izoh (ixtiyoriy)</label>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
@@ -135,7 +148,7 @@ export default function AddMedicationPage() {
             type="submit"
             className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-green-700"
           >
-            Save Medication
+            Dorini saqlash
           </button>
         </form>
       </main>

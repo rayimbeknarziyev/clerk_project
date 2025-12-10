@@ -1,14 +1,12 @@
-
 export default function AboutPage() {
   return (
     <div>
-
       <main className="max-w-4xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6">About MedReminder</h1>
 
         <div className="bg-white p-6 shadow-md rounded-xl border space-y-6">
           <section>
-            <h2 className="text-xl font-semibold mb-2">What is MedReminder?</h2>
+            <h2 className="text-xl font-semibold mb-2">MedReminder nima?</h2>
             <p className="text-gray-700 leading-relaxed">
               MedReminder — bu dorilarni o‘z vaqtida ichishni eslatib turadigan
               shaxsiy sog‘liq asistenti. Foydalanuvchi har kuni ichishi kerak
@@ -18,7 +16,9 @@ export default function AboutPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-2">Key Features</h2>
+            <h2 className="text-xl font-semibold mb-2">
+              Bu saytning foydalari
+            </h2>
             <ul className="list-disc ml-6 text-gray-700 space-y-1">
               <li>Kunlik dori eslatmalari</li>
               <li>“Ichdim” tugmasi bilan progress kuzatish</li>
@@ -31,7 +31,7 @@ export default function AboutPage() {
 
           <section>
             <h2 className="text-xl font-semibold mb-2">
-              How Your Data Is Stored
+              Sizning malumotlaringiz qanday saqlanadi
             </h2>
             <p className="text-gray-700 leading-relaxed">
               Tizim foydalanuvchi maʼlumotlarini xavfsiz saqlash uchun zamonaviy
@@ -42,9 +42,9 @@ export default function AboutPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-2">Developer</h2>
+            <h2 className="text-xl font-semibold mb-2">Dasturchi</h2>
             <p className="text-gray-700 leading-relaxed">
-              Ushbu loyiha{" "}
+              Ushbu loyiha
               <span className="font-semibold">Rayimbek Narziyev</span>
               tomonidan Next.js, TypeScript va Clerk asosida ishlab chiqilgan.
               Maqsad — foydalanuvchilarga kundalik sog‘liq faoliyatini qulayroq
