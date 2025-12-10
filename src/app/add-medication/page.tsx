@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { API_URL } from "@/lib/api";
 import { Medication } from "../type";
 
 export default function AddMedicationPage() {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [dosage, setDosage] = useState("");
   const [timesPerDay, setTimesPerDay] = useState(1);
@@ -43,14 +46,12 @@ export default function AddMedicationPage() {
 
       if (!res.ok) throw new Error("Dorini qo‘shishda xatolik yuz berdi");
 
-      alert("Dori muvaffaqiyatli qo‘shildi!");
+      const savedMeds = localStorage.getItem("meds");
+      const medsArray = savedMeds ? JSON.parse(savedMeds) : [];
+      medsArray.push(newMed);
+      localStorage.setItem("meds", JSON.stringify(medsArray));
 
-      setName("");
-      setDosage("");
-      setTimesPerDay(1);
-      setTimes([""]);
-      setStock(1);
-      setNotes("");
+      router.push("/medications");
     } catch (err) {
       console.error(err);
       alert("Dorini qo‘shishda xatolik yuz berdi");
