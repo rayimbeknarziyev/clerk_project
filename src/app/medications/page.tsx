@@ -151,14 +151,14 @@ export default function MedicationsPage() {
               <div className="mt-6 flex justify-between gap-1">
                 <Link
                   href={`/medications/${med.id}/edit`}
-                  className="px-4 py-2 rounded-lg bg-yellow-500 text-white hover:bg-yellow-600 font-medium"
+                  className="btn px-4 py-2 rounded-lg bg-yellow-500 text-white hover:bg-yellow-600 font-medium"
                 >
                   Tahrirlash
                 </Link>
 
                 <button
                   onClick={() => deleteMed(med.id)}
-                  className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 font-medium"
+                  className="btn px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 font-medium"
                 >
                   O‘chirish
                 </button>
