@@ -63,15 +63,20 @@ export default function MedicationsPage() {
   const deleteMed = async (id: string) => {
     try {
       const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Dorini o‘chirishda xatolik yuz berdi");
-      const updated = meds.filter((m) => m.id !== id);
-      setMeds(updated);
-      localStorage.setItem("meds", JSON.stringify(updated));
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
+      if (!res.ok) {
+        console.warn(
+          "Backend DELETE ishlamadi, faqat localStorage yangilanadi"
+        );
+      }
+    } catch (err) {
+      console.warn("DELETE xatolik, ammo local o'chiriladi");
+    }
+
+    const updated = meds.filter((m) => m.id !== id);
+    setMeds(updated);
+    localStorage.setItem("meds", JSON.stringify(updated));
+  };
   if (loading) return <p className="p-6">Yuklanmoqda...</p>;
   if (error) return <p className="p-6 text-red-600">{error}</p>;
 
